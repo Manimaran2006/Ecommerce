@@ -8,7 +8,7 @@ export default function Home() {
 
 useEffect(() => {
 
-    fetch('http://98.93.119.171:8000/api/v1/products?' + searchParams)
+    fetch('http://REACT_APP_API_URL' + searchParams)
     .then(res => res.json())
     .then(res => {
         console.log(res);
