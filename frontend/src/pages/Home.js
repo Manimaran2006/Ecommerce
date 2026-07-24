@@ -6,16 +6,17 @@ export default function Home() {
     const [products, setProducts] = useState([]);
     const [searchParams, setSearchParams] =  useSearchParams()
 
-    useEffect(() => {
-        fetch('http://98.93.119.171:8000/api/v1/products')
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setProducts(data.products);
-        })
-        .catch(error => console.log(error));
-    
-    }, []);
+useEffect(() => {
+
+    fetch('http://98.93.119.171:8000/api/v1/products?' + searchParams)
+    .then(res => res.json())
+    .then(res => {
+        console.log(res);
+        setProducts(res.products);
+    })
+    .catch(err => console.log(err));
+
+}, [searchParams]);
 
     return <Fragment>
         <h1 id="products_heading">Latest Products</h1>
