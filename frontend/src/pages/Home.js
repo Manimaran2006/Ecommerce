@@ -7,10 +7,15 @@ export default function Home() {
     const [searchParams, setSearchParams] =  useSearchParams()
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_URL+'/products?'+searchParams)
+        fetch('http://98.93.119.171:8000/api/v1/products')
         .then(res => res.json())
-        .then( res => setProducts(res.products))
-    },[searchParams])
+        .then(data => {
+            console.log(data);
+            setProducts(data.products);
+        })
+        .catch(error => console.log(error));
+    
+    }, []);
 
     return <Fragment>
         <h1 id="products_heading">Latest Products</h1>
